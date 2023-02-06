@@ -106,4 +106,26 @@ cvp_devices_test:
 
 This data model has leaf1 and leaf2 and specifies which container they will be located in as well as which configlets are to be applied. This adds "MLAG-Left" to leaf1 and "MLAG-Right" to leaf2. 
 
-Create a new file under the playbooks directory called "apply_configlets.yml". Do this by selecting the playbooks directory and clicking the 
+Create a new file under the playbooks directory called "apply_configlets.yml". Do this by selecting the playbooks directory and clicking the "+" icon above it. 
+
+<img src=lab3-images/4.png border=1>
+
+Paste the following into the new apply_configlets.yml file: 
+
+<pre>
+---
+- name: Playbook for applying configlets to devices in CloudVision
+  hosts: cvp1
+
+  vars_files:
+    - ../vars/CVP_model.yml
+
+  tasks:
+    - name: Apply configlets to devices
+      arista.cvp.cv_device_v3:
+        devices: "{{ cvp_devices_test }}"
+        state: present
+        apply_mode: strict
+
+</pre>
+
