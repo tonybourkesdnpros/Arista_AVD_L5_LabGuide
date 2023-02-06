@@ -1,4 +1,4 @@
-# Lab 1 (Advanced CVP)
+# Lab 1 (Advanced CVP: Explore IDE)
 
 In this lab you will explore the coder environment as well as set up the directory structure for the rest of the labs. 
 
@@ -65,7 +65,7 @@ Use the Linux <b><tt>cd</tt></b> command to change directories into the persist 
 ➜  persist 
 </pre>
 
-To simplify creation of the various files, there is a Github repository that you will clone. Use the command <tt><b>git clone https://github.com/tonybourkesdnpros/Advanced-CVP.git</b>></tt>
+To simplify creation of the various files, there is a Github repository that you will clone. Use the command <tt><b>git clone https://github.com/tonybourkesdnpros/Advanced-CVP.git</b></tt>
 
 <pre>
 persist <b>git clone https://github.com/tonybourkesdnpros/Advanced-CVP.git</b>
@@ -78,5 +78,12 @@ Receiving objects: 100% (8/8), done.
 ➜  persist 
 </pre>
 
-This will clone the git repository onto your lab environment. 
+This will clone the git repository onto your lab environment. In the upper left corner click on the "perist" directory which will open up the directory to show you the new Advanced-CVP directory. 
 
+<img src=lab1-images/9.png width="75%" height="75%" border=1>
+
+
+You should see three dirctories: Ansible-CVP, AVD, and Python. These three directories contain the files necessary for the next few labs. 
+
+
+<img src=lab1-images/10.png width="75%" height="75%" border=1>
