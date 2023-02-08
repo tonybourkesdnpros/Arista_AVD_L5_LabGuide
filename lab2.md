@@ -124,7 +124,7 @@ cvp_devices_default:
       - 'borderleaf2-base'
 </pre>
 
-This data model has two sections: cvp_containers_default cvp_devices_default. The playbook will make sure the containers specified in cvp_containers_default are there, and the playbook will make sure that the configlets listed under cvp_devices_default are attached to the devices (and only those configlets are attached). 
+This data model has two sections: <b>cvp_containers_default</b> and <b>cvp_devices_default</b>. The playbook will make sure the containers specified in cvp_containers_default are there, and the playbook will make sure that the configlets listed under cvp_devices_default are attached to the devices (and only those configlets are attached). 
 
 In the terminal window, change the directory to the Advanced-CVP directory and then the Ansible-CVP directory. 
 
