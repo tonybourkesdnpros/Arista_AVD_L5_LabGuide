@@ -52,7 +52,7 @@ Verify that the configlets were uploaded by searching for the configlets in Clou
 
 <img src=lab3-images/2.png width="50%" height="50%" border=1>
 
-If you look in the configlets directory, you'll see there's also an MLAG-right.cfg file. Modify the data model (CVP_model.yml) to include this file as well. 
+If you look in the configlets directory, you'll see there's also an MLAG-right.cfg file. Modify the data model (CVP_model.yml) to include this file as well (the line to add is in bold).
 
 <pre>
 path: "{{lookup('env','PWD')}}"

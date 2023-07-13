@@ -154,7 +154,7 @@ Note how many tests were run. The total number may vary depending on the version
 Log into leaf1 and <tt>shutdown</tt> interfaces e3-e5, which are leaf1's connection to the spines. 
 
 <pre>
-➜  AVD git:(main) <b>ssh leaf1</b>
+➜  AVD git:(main) <b>ssh arista@leaf1</b>
 Last login: Wed Feb  8 18:47:32 2023 from 192.168.0.1
 leaf1#<b>conf</b>
 leaf1(config)#<b>int e3-5</b>
@@ -331,6 +331,42 @@ tenants:
 
 A second SVI, 20, will be added (additional lines are in bold). SVI IDs correspond to local VLAN IDs. 
 
+Next, edit the ATD_SERVERS.yml file and add a port_profile for VLAN_20 and change host2 to use that profile. The changed lines are bold. 
+<pre>
+---
+port_profiles:
+  VLAN_10:
+    mode: access
+    vlans: "10"
+  <b>VLAN_20:
+    mode: access
+    vlans: "20"</b>
+
+servers:
+  host1:
+    rack: mlag1
+    adapters:
+      - type: nic
+        switch_ports: [Ethernet6, Ethernet7, Ethernet6, Ethernet7]
+        switches: [leaf1,leaf1, leaf2, leaf2]
+        profile: VLAN_10
+        port_channel:
+          state: present
+          description: PortChannel_to_host1
+          mode: active
+  host2:
+    rack: mlag2
+    adapters:
+      - type: nic
+        switch_ports: [Ethernet6, Ethernet7, Ethernet6, Ethernet7]
+        switches: [leaf3, leaf3, leaf4, leaf4]
+        profile: <b>VLAN_20</b>
+        port_channel:
+          state: present
+          description: PortChannel_to_host2
+          mode: active
+</pre>
+
 Run the fabric build command again.
 
 <pre>➜  AVD git:(main) <b>ansible-playbook playbooks/atd-build.yml</b>
@@ -347,6 +383,60 @@ spine3                     : ok=5    changed=0    unreachable=0    failed=0    s
 </pre>
 
 Then run the deploy playbook. 
+<pre>
+➜  AVD git:(main)<b> ansible-playbook playbooks/atd-deploy.yml </b>
+...
+
+PLAY RECAP ******************************************************************************************************************
+cvp1                       : ok=10   changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+</pre>
+
+This will create 4 tasks in CloudVision (only the leafs are affected). (Note the lines added/removed/changed may be different for you.)
+
+<img src=lab4-images/10.png width="50%" height="50%" border=1>
 
 
+Run those tasks through a change control. 
+
+<img src=lab4-images/11.png border=1>
+
+
+Once that change control is complete, log back into host2 if you're not already logged in. 
+<pre>
+➜  project <b>ssh arista@host2</b>
+Last login: Wed Feb  8 20:32:06 2023 from 192.168.0.1
+host2#
+
+</pre>
+
+Ping the new first hop for host2 (10.1.20.1). Note that it may take a few attempts in the lab environment for the ARP to resolve. 
+<pre>
+host2#<b>ping 10.1.20.1</b>
+PING 10.1.20.1 (10.1.20.1) 72(100) bytes of data.
+80 bytes from 10.1.20.1: icmp_seq=1 ttl=64 time=9.02 ms
+80 bytes from 10.1.20.1: icmp_seq=2 ttl=64 time=8.32 ms
+80 bytes from 10.1.20.1: icmp_seq=3 ttl=64 time=5.61 ms
+80 bytes from 10.1.20.1: icmp_seq=4 ttl=64 time=4.26 ms
+80 bytes from 10.1.20.1: icmp_seq=5 ttl=64 time=4.74 ms
+
+--- 10.1.20.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 38ms
+rtt min/avg/max/mdev = 4.262/6.393/9.029/1.928 ms, ipg/ewma 9.669/7.585 ms
+</pre>
+
+<pre>
+host2#<b>ping 10.1.10.11</b>
+PING 10.1.10.11 (10.1.10.11) 72(100) bytes of data.
+80 bytes from 10.1.10.11: icmp_seq=1 ttl=62 time=36.1 ms
+80 bytes from 10.1.10.11: icmp_seq=2 ttl=62 time=45.8 ms
+80 bytes from 10.1.10.11: icmp_seq=3 ttl=62 time=36.2 ms
+80 bytes from 10.1.10.11: icmp_seq=4 ttl=62 time=30.1 ms
+80 bytes from 10.1.10.11: icmp_seq=5 ttl=62 time=53.6 ms
+
+--- 10.1.10.11 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 70ms
+rtt min/avg/max/mdev = 30.129/40.412/53.690/8.328 ms, pipe 4, ipg/ewma 17.529/38.521 ms
+</pre>
+
+Ping you
 

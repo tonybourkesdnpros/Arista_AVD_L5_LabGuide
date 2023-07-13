@@ -1,4 +1,4 @@
-# Lab 1 (Advanced CVP: Explore IDE)
+# Lab 1 (Explore IDE)
 
 In this lab you will explore the coder environment as well as set up the directory structure for the rest of the labs. 
 
@@ -65,10 +65,10 @@ Use the Linux <b><tt>cd</tt></b> command to change directories into the persist 
 ➜  persist 
 </pre>
 
-To simplify creation of the various files, there is a Github repository that you will clone. Use the command <tt><b>git clone https://github.com/tonybourkesdnpros/Advanced-CVP.git</b></tt>
+To simplify creation of the various files, there is a Github repository that you will clone. Use the command <tt><b>git clone https://github.com/sdn-pros/CVP-Labs.git</b></tt>
 
 <pre>
-persist <b>git clone https://github.com/tonybourkesdnpros/Advanced-CVP.git</b>
+persist <b>git clone https://github.com/sdn-pros/CVP-Labs.git</b>
 Cloning into 'Advanced-CVP'...
 remote: Enumerating objects: 8, done.
 remote: Counting objects: 100% (8/8), done.
