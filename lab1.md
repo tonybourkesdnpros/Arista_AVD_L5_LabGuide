@@ -1,8 +1,6 @@
-# Lab 1 (Explore IDE)
 
-In this lab you will explore the coder environment as well as set up the directory structure for the rest of the labs. 
 
-## The Coder Project
+## The IDE (Integrated Development Environment)
 
 The Arista lab environment runs what's known as an IDE (Integrated Development Environment) called code-server. It's based on Microsoft's Visual Studio Code (VSCode) which is currently one of the most often used IDEs, especially with network automation. The code-server project takes VSCode and runs it as a web application server. Both VSCode and code-server are open source and free. 
 
@@ -65,25 +63,26 @@ Use the Linux <b><tt>cd</tt></b> command to change directories into the persist 
 ➜  persist 
 </pre>
 
-To simplify creation of the various files, there is a Github repository that you will clone. Use the command <tt><b>git clone https://github.com/sdn-pros/CVP-Labs.git</b></tt>
+To simplify creation of the various files, there is a Github repository that you will clone. Use the command <tt><b>git clone https://github.com/tonybourkesdnpros/TD_AVD_L5.git</b></tt>
 
 <pre>
-persist <b>git clone https://github.com/sdn-pros/CVP-Labs.git</b>
-Cloning into 'Advanced-CVP'...
-remote: Enumerating objects: 8, done.
-remote: Counting objects: 100% (8/8), done.
-remote: Compressing objects: 100% (5/5), done.
-remote: Total 8 (delta 0), reused 8 (delta 0), pack-reused 0
-Receiving objects: 100% (8/8), done.
+➜  persist <b>git clone https://github.com/tonybourkesdnpros/TD_AVD_L5.git</b>
+Cloning into 'TD_AVD_L5'...
+remote: Enumerating objects: 67, done.
+remote: Counting objects: 100% (67/67), done.
+remote: Compressing objects: 100% (49/49), done.
+remote: Total 67 (delta 14), reused 67 (delta 14), pack-reused 0
+Receiving objects: 100% (67/67), 1.74 MiB | 10.89 MiB/s, done.
+Resolving deltas: 100% (14/14), done.
 ➜  persist 
 </pre>
 
-This will clone the git repository onto your lab environment. In the upper left corner click on the "perist" directory which will open up the directory to show you the new Advanced-CVP directory. 
+This will clone the git repository onto your lab environment. In the upper left corner click on the "perist" directory which will open up the directory to show you the new TD_AVD_L5 directory. 
 
 <img src=lab1-images/9.png width="75%" height="75%" border=1>
 
 
-You should see three dirctories: Ansible-CVP, AVD, and Python. These three directories contain the files necessary for the next few labs. 
-
-
 <img src=lab1-images/10.png width="75%" height="75%" border=1>
+
+## Configure Hosts
+
